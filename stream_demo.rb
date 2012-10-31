@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'redis'
 
 conns = []
 
@@ -12,14 +11,17 @@ get '/subscribe' do
   stream(:keep_open) do |out|
     conns << out
     out.callback { conns.delete(out) }
+    out << "event: init\n\n"
+    out << "data: there are now #{conns.length} stream(s).\n\n"
   end
 end
 
 get '/publish' do
   conns.each do |out|
-    out << "hello #{out}!\n"
+    out << "event: publish\n\n"
+    out << "data: hello #{out}!\n\n"
   end
-  "published to #{conns.length} stream(s)."
+  "published to #{conns.length} stream(s).\n"
 end
 
 __END__
