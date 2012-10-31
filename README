@@ -1,0 +1,35 @@
+Sinatra + Thin + streaming + dotCloud
+=====================================
+
+To test locally:
+
+- gem install bundler
+- bundle install
+- ruby stream_demo.rb
+- for N in `seq 1 10` ; do curl http://localhost:4567/subscribe & done
+- curl http://localhost:4567/publish
+
+You should see 10 messages looking like this:
+
+  hello #<Sinatra::Helpers::Stream:0x00000001dc9618
+
+And one like this:
+
+  published to 700 stream(s).
+
+
+To test on dotCloud
+===================
+
+- dotcloud create -f sandbox thin
+- dotcloud push thin
+
+The base URL will be show at the end of the push. You can then run the same
+test as shown above, by changing the URLs.
+
+
+Thanks
+======
+
+I'd like to thank Thibaut Barrère and Sébastien Gruhier, for giving a basic
+streaming example with Thin+Sinatra.

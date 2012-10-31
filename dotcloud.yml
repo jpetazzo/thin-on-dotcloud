@@ -1,0 +1,8 @@
+www:
+  type: ruby-worker
+  ports:
+    www: http
+  processes:
+    thin: ruby stream_demo.rb -p $PORT_WWW
+
+
