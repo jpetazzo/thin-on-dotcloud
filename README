@@ -5,7 +5,7 @@ To test locally:
 
 - gem install bundler
 - bundle install
-- ruby stream_demo.rb
+- thin -p 4567 start
 - for N in `seq 1 10` ; do curl http://localhost:4567/subscribe & done
 - curl http://localhost:4567/publish
 
