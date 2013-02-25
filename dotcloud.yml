@@ -3,6 +3,4 @@ www:
   ports:
     www: http
   processes:
-    thin: ruby stream_demo.rb -p $PORT_WWW
-
-
+    thin: thin -p $PORT_WWW start
